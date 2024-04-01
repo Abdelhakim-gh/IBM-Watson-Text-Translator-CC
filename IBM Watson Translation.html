@@ -1,0 +1,713 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>IBM Watson Translation</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="ef9b8621-a423-4596-8e53-233a1832be6f" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1562705121-e624542c7b9b?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">💻</span></div><h1 class="page-title">IBM Watson Translation</h1><p class="page-description"></p></header><div class="page-body"><hr id="fe90c1ae-30be-49a9-9abe-507a7ce9c16b"/><div id="dc6bbfea-0b45-4270-8fe3-521193d8589d" class="column-list"><div id="c6806d3e-9312-4884-95c9-c8fa815a644e" style="width:50%" class="column"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="81ba80a1-8c33-4cd8-aca1-502245dcf76e"><div style="font-size:1.5em"><span class="icon">🎓</span></div><div style="width:100%"><span style="border-bottom:0.05em solid">Made by:</span><ul id="cd59bb56-98c6-48f9-b400-5a626dcf5dde" class="bulleted-list"><li style="list-style-type:disc">Ilyas Bazzi</li></ul><ul id="f0889da3-70c7-4b64-9000-9ba76b5919a6" class="bulleted-list"><li style="list-style-type:disc">Abdelhakim EL Ghayoubi</li></ul><ul id="0da1f691-c8e1-4647-ab7e-e6e26bcec42f" class="bulleted-list"><li style="list-style-type:disc">Oussama EL Hafidi</li></ul></div></figure></div><div id="d3667e3b-3660-41f5-b692-bc76f3e66013" style="width:50%" class="column"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="9b9c10bd-fe0d-4c7a-8cb4-b86f7c629d46"><div style="font-size:1.5em"><span class="icon">✒️</span></div><div style="width:100%">Supervised by<ul id="9a9e26c6-97b5-4662-98f5-0500e9bcc904" class="bulleted-list"><li style="list-style-type:disc">Pr. <strong>Faouzia Benabbou</strong></li></ul></div></figure><p id="4fd327ee-1561-45ff-bff6-03e39ef17ac0" class="">
+</p></div></div><p id="5dd7c6a5-ff47-4cb5-bde6-76ff8237fb0e" class="">
+</p><p id="fdcc33c6-142c-4137-899f-761119c00708" class="">
+</p><figure id="7040b4c5-c169-472c-a15c-09c4ef4cf326"><a href="https://github.com/Abdelhakim-gh/IBM-Watson-Text-Translator-CC.git" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - Abdelhakim-gh/IBM-Watson-Text-Translator-CC</div><div class="bookmark-description">Contribute to Abdelhakim-gh/IBM-Watson-Text-Translator-CC development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/Abdelhakim-gh/IBM-Watson-Text-Translator-CC.git</div></div><img src="https://opengraph.githubassets.com/87b5b09f682383308f3075c816038ade5d9af6fe75a5f62543f39cba8f047149/Abdelhakim-gh/IBM-Watson-Text-Translator-CC" class="bookmark-image"/></a></figure><p id="640af415-1405-41e2-84c4-89ab46d26e4b" class="">
+</p><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="90ea0f9f-7290-408a-8ef9-e1e8e9f46aa7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><em>IBM Watson Text Translation Service offers multilingual support, including customization for specific needs. It utilizes Neural Machine Translation (NMT) for accurate and fluent translations. With a RESTful API, developers can seamlessly integrate translation capabilities into their applications.</em></div></figure><h2 id="6cbd1872-c794-44c6-a4c3-2165e8fb655d" class=""><span style="border-bottom:0.05em solid">Create account for free</span></h2><div id="e7b94cd7-7b46-4714-b810-3896e0742c89" class="column-list"><div id="52cf923e-0248-4628-89c7-e52bf0b507cd" style="width:50%" class="column"><ol type="1" id="7382573c-4dbe-468b-a831-bf68959d7d57" class="numbered-list" start="1"><li>get a free sign up code for <strong><mark class="highlight-blue"><code>IBM Watson</code></mark></strong></li></ol><ul id="74e4342d-83a3-42ff-b2f8-672510ced802" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cognitiveclass.ai/">https://cognitiveclass.ai/</a><figure id="a865dbbf-aa91-4b80-a25d-cf0d2999adce" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled.png"><img style="width:1033px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled.png"/></a></figure></li></ul><ol type="1" id="d5fe5114-7860-4e5d-96ef-90e34df9d272" class="numbered-list" start="3"><li>Sign in </li></ol><ol type="1" id="3234e2cf-b656-4be2-8de5-2cd8c0f3a192" class="numbered-list" start="4"><li>Search for: <strong><em>IBM introduction to cloud</em></strong><figure id="24e67f70-8a25-419c-a145-503c783ef43f" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%201.png"><img style="width:1612px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%201.png"/></a></figure><ol type="1" id="1abcf0f8-d563-46b1-9b5c-473ce8e4f81e" class="numbered-list" start="6"><li>Look in Module 1 for <strong><em>Obtain IBM code</em></strong><figure id="90da4b3d-7255-4167-a4c8-906d2ec2857a" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%202.png"><img style="width:480px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%202.png"/></a></figure></li></ol></li></ol></div><div id="e6bb84a6-dba2-4afb-ae83-ea241cdf5fb4" style="width:50%" class="column"><ol type="1" id="756374a1-93d5-412d-88f3-3824db5bf277" class="numbered-list" start="2"><li>click <strong><code>register</code></strong> &amp; fill the information <figure id="28155493-16b4-4629-aa84-3223c5be3d17" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%203.png"><img style="width:1033px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%203.png"/></a></figure></li></ol><p id="e9ba0c00-4536-48c2-8af6-86dd7050e68c" class="">5. Enroll in Course <div class="indented"><figure id="d79244e5-159f-4e9f-92da-47469bb7f860" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%204.png"><img style="width:1033px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%204.png"/></a></figure></div></p><ol type="1" id="9e3dd3b8-6925-45a6-8c2f-77181d11fa01" class="numbered-list" start="7"><li>Get the code &amp; save it somewhere <figure id="8e67a3d2-dac2-49a3-b675-640bb1c7bfba" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%205.png"><img style="width:1175px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%205.png"/></a></figure></li></ol></div></div><hr id="9e12149a-ae20-4e0a-a53a-465042d9adbe"/><ul id="fae62bbf-5e6d-47bb-b508-3a31682615ca" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cloud.ibm.com/registration">https://cloud.ibm.com/registration</a><figure id="e45862ec-34c8-4898-8e4c-343660173c83" class="image" style="text-align:center"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%206.png"><img style="width:720px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%206.png"/></a></figure></li></ul><ul id="fcbd3aa6-c782-40d8-ab46-5539d49894d7" class="bulleted-list"><li style="list-style-type:disc">after completing your account information, verifying your account and accepting the terms of use  <strong><em>you dont need to fill bank account since you have the IBM Watson code you can register using code </em></strong><figure id="df28572e-04b5-4754-a514-d463549dcb3f" class="image" style="text-align:center"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%207.png"><img style="width:672px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%207.png"/></a></figure><figure id="b7ba8cd7-0bf0-4dbb-b98f-22cf73d0f726" class="image" style="text-align:center"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%208.png"><img style="width:672px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%208.png"/></a></figure></li></ul><p id="96d549e8-b413-4b06-a2ea-3cde1d1d0bc8" class="">
+</p><h2 id="aa303b7c-a6ec-4ce4-9f89-b8f453db28ad" class="">Translation Service  </h2><ul id="519054e9-8e43-40a9-95e4-62e692b55740" class="bulleted-list"><li style="list-style-type:disc">After login to your <strong><mark class="highlight-blue"><code>IBM</code></mark></strong> account you’ll see a Dashboard of IBM services suggestion <figure id="f429fbbb-aa05-41c7-bbaa-8f9c46366842" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%209.png"><img style="width:1033px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%209.png"/></a></figure></li></ul><ul id="a280bec9-3e0e-4283-8f2d-c756df634ed0" class="bulleted-list"><li style="list-style-type:disc">in Search tab look for <strong><em>Language translator</em></strong><figure id="d5efacbe-0f64-4ba1-8e91-a6d3f8011ef0" class="image" style="text-align:center"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2010.png"><img style="width:687px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2010.png"/></a></figure></li></ul><ul id="20201fca-b829-4868-a1a8-13b24f4cadab" class="bulleted-list"><li style="list-style-type:disc">choose the free plan , agree on terms &amp; click on create <figure id="989d9e6e-e8d1-43da-8f82-8b6214773c0a" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2011.png"><img style="width:1033px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2011.png"/></a></figure></li></ul><ul id="1304d0db-47b9-48de-8fd2-ed2e466ef516" class="bulleted-list"><li style="list-style-type:disc">Now you should see your <em><strong>API identifiers</strong></em>, which you can either copy into the code or download and load into the file, the choice is yours. <figure id="87d81376-fa6c-455a-9e9f-85a9207df82e" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2012.png"><img style="width:1391px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2012.png"/></a></figure></li></ul><p id="00229f93-57f3-42aa-874c-f87e354735b3" class="">
+</p><hr id="ae0152a3-dbfe-4b45-bcbd-1f486f81bf9f"/><h2 id="92e78b47-942f-47de-ad4d-1effe66c1eb8" class="">Implementation / consuming a service </h2><div id="70c10404-fb05-4715-93a4-a886de924cee" class="column-list"><div id="6bcfdc2e-14a0-4c67-8aba-6e1099eec08f" style="width:68.75%" class="column"><blockquote id="e1077885-3dfe-43d4-9721-80ccaafc3b8f" class="block-color-blue"><strong>for more information about api visite: </strong><ul id="572ee9a9-ade2-4b98-a78a-33beb25c1f44" class="bulleted-list"><li style="list-style-type:disc"><strong><mark class="highlight-blue"><code><a href="https://cloud.ibm.com/docs/language-translator">https://cloud.ibm.com/docs/language-translator</a></code></mark></strong></li></ul></blockquote><ul id="8c3a71c1-a35b-4f2e-874e-805d7975d6b3" class="bulleted-list"><li style="list-style-type:disc">first we need to install lib <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2743b85c-40a9-48bb-ace8-16e661d9cda3" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all"># for ibm watson tools
+!py -m pip install ibm_watson
+# for tikenter customization / themes 
+!py -m pip install ttkthemes</code></pre></li></ul><ul id="03a7158f-1844-4273-ad27-0af1be5ae13d" class="bulleted-list"><li style="list-style-type:disc">translate function that will take input &amp; translate it base on target Lang &amp; you need to specify  (<strong>credentials</strong>):<ul id="ac7cd6a5-118c-483b-950a-4c60d31bbcaa" class="bulleted-list"><li style="list-style-type:circle"><strong><code>url</code></strong></li></ul><ul id="1a6d5bf3-8702-47d1-89d0-f5c3fd76c69b" class="bulleted-list"><li style="list-style-type:circle"><strong><code>api key</code></strong></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5e83db9e-289e-4a3c-bde4-48347c99ab2b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">def translate():
+    source_lang = left_drag_drop.get()
+    target_lang = right_drag_drop.get()
+    text_to_translate = left_text.get(&quot;1.0&quot;, tk.END).strip()
+
+    if text_to_translate:
+        headers = {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            &quot;Accept&quot;: &quot;application/json&quot;
+        }
+        url = &lt;your-url&gt;
+        auth = (&quot;apikey&quot;, &lt;your-api-key&gt;)
+        data = {
+            &quot;text&quot;: [text_to_translate],
+            &quot;source&quot;: source_lang,
+            &quot;target&quot;: target_lang
+        }
+
+        response = requests.post(url, headers=headers, auth=auth, json=data)
+        if response.status_code == 200:
+            translated_text = response.json()[&quot;translations&quot;][0][&quot;translation&quot;]
+            right_text.delete(&quot;1.0&quot;, tk.END)
+            right_text.insert(tk.END, translated_text)
+        else:
+            right_text.delete(&quot;1.0&quot;, tk.END)
+            right_text.insert(tk.END, &quot;Error: Translation Failed&quot;)</code></pre><h3 id="bba21184-de61-4f76-86e5-7c2bdcd5a7f4" class="">Implementation with 2 versions of code </h3><ul id="28737bb4-3b17-4e15-96b3-a16de8771dc3" class="bulleted-list"><li style="list-style-type:circle">Implementation v1<figure id="4e2c6f3f-593f-4522-8474-197814d922c4" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2013.png"><img style="width:1211px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2013.png"/></a></figure></li></ul><ul id="6cf62610-0460-4771-822a-f414a54e491b" class="bulleted-list"><li style="list-style-type:circle">Implementation v2<figure id="ce210371-8a5f-4647-984b-78523634a82d" class="image"><a href="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2014.png"><img style="width:669.8125px" src="IBM%20Watson%20Translation%20ef9b8621a42345968e53233a1832be6f/Untitled%2014.png"/></a></figure></li></ul></li></ul><p id="10b4beff-b097-448b-9ad4-686a128e2976" class="">
+</p></div><div id="851a32fa-3a58-4251-ae16-a7485e58884b" style="width:31.25%" class="column"><p id="773ba972-6a38-4410-95e6-a66bf50740b1" class=""><strong><em>sample of languaged </em></strong></p><table id="9b9c1b58-01b9-45d3-b074-89800e8df4b1" class="simple-table"><thead class="simple-table-header"><tr id="22542f44-f395-41be-b8de-002bc50bcb60"><th id="qOj{" class="simple-table-header-color simple-table-header">Language</th><th id="FVqj" class="simple-table-header-color simple-table-header">Language code</th></tr></thead><tbody><tr id="493504f7-ba9e-4629-a09c-a65995d78179"><td id="qOj{" class="">Arabic</td><td id="FVqj" class="">ar</td></tr><tr id="7d9924f8-6018-40d7-9084-f20256332117"><td id="qOj{" class="">Korean</td><td id="FVqj" class="">ko</td></tr><tr id="fb43e34a-e9fc-4eb1-a647-ab583f97b005"><td id="qOj{" class="">Basque</td><td id="FVqj" class="">eu</td></tr><tr id="190f6540-d656-41db-92f6-109153fc636f"><td id="qOj{" class="">Latvian</td><td id="FVqj" class="">lv</td></tr><tr id="6c310c82-002a-4581-96ba-df03f6a32553"><td id="qOj{" class="">Bengali</td><td id="FVqj" class="">bn</td></tr><tr id="eab513b1-bc12-4ada-b1be-8d21a537f3f7"><td id="qOj{" class="">Lithuanian</td><td id="FVqj" class="">lt</td></tr><tr id="e40725aa-8be0-451c-afdb-8d0d01ebaf23"><td id="qOj{" class="">Bosnian</td><td id="FVqj" class="">bs</td></tr><tr id="1fef6dd3-a8e6-4713-80dd-c6ee33a1c917"><td id="qOj{" class="">Malay</td><td id="FVqj" class="">ms</td></tr><tr id="a9e021e5-f140-4481-8611-3ee171d844cd"><td id="qOj{" class="">Bulgarian</td><td id="FVqj" class="">bg</td></tr><tr id="e54a4e75-5168-4bd4-b516-73a114a13e07"><td id="qOj{" class="">Malayalam</td><td id="FVqj" class="">ml</td></tr><tr id="b930ed2d-c83a-4c14-83d0-725cdee1cbdd"><td id="qOj{" class="">Catalan</td><td id="FVqj" class="">ca</td></tr><tr id="ed52b111-4b0b-49b6-a0dd-3462fa13069a"><td id="qOj{" class="">Maltese</td><td id="FVqj" class="">mt</td></tr><tr id="0ddedc68-0ef9-4fb4-8276-eb737ac0fb23"><td id="qOj{" class="">Chinese (Simplified)</td><td id="FVqj" class="">zh</td></tr><tr id="74a741aa-6234-4a1e-acad-ee63734ca725"><td id="qOj{" class="">Montenegrin</td><td id="FVqj" class="">cnr</td></tr><tr id="02b40693-7a96-4159-9a9d-147bee31ce89"><td id="qOj{" class="">Chinese (Traditional)</td><td id="FVqj" class="">zh-TW</td></tr><tr id="d5f6ac23-d44f-4b06-9b43-3892bf64d757"><td id="qOj{" class="">Nepali</td><td id="FVqj" class="">ne</td></tr><tr id="03279506-09b1-45bf-be82-985d62b82680"><td id="qOj{" class="">Croatian</td><td id="FVqj" class="">hr</td></tr><tr id="3863d39c-d356-4900-8c8c-f316e458a232"><td id="qOj{" class="">Norwegian Bokmål</td><td id="FVqj" class="">nb</td></tr><tr id="f0f489ee-1e21-4271-aef2-34c944253408"><td id="qOj{" class="">Czech</td><td id="FVqj" class="">cs</td></tr><tr id="6b6b98b5-652f-4231-a582-177b95cdc9b8"><td id="qOj{" class="">Polish</td><td id="FVqj" class="">pl</td></tr><tr id="187840f1-950f-428b-9274-3874a33d6d09"><td id="qOj{" class="">Danish</td><td id="FVqj" class="">da</td></tr><tr id="47254901-8953-4d5c-adc3-63933e4a0559"><td id="qOj{" class="">Portuguese</td><td id="FVqj" class="">pt</td></tr><tr id="50253604-8a03-44ac-a23e-be8cdd48b2a1"><td id="qOj{" class="">Dutch</td><td id="FVqj" class="">nl</td></tr><tr id="b4048e7f-eb45-43ce-9e38-68408d50144b"><td id="qOj{" class="">Romanian</td><td id="FVqj" class="">ro</td></tr><tr id="3358ada8-6f5f-4570-ab8b-882a530b90b4"><td id="qOj{" class="">English</td><td id="FVqj" class="">en</td></tr><tr id="21b87db2-8358-4207-afc8-67a5f311d59b"><td id="qOj{" class="">Russian</td><td id="FVqj" class="">ru</td></tr><tr id="8551e0b7-55d0-49d8-8b90-3f82481900b9"><td id="qOj{" class="">Estonian</td><td id="FVqj" class="">et</td></tr><tr id="a1c18b73-531d-481f-95af-b0220b8c9dab"><td id="qOj{" class="">Serbian</td><td id="FVqj" class="">sr</td></tr><tr id="635c396b-a874-4524-8434-52b6caa10b28"><td id="qOj{" class="">Finnish</td><td id="FVqj" class="">fi</td></tr><tr id="44f3e511-c072-4d84-944a-314c6bcdf7a6"><td id="qOj{" class="">Sinhala</td><td id="FVqj" class="">si</td></tr><tr id="c950b42e-78a0-4bfc-bae1-7dcd4f03b2c2"><td id="qOj{" class="">French</td><td id="FVqj" class="">fr</td></tr><tr id="8585c483-010a-4cab-bc2d-79991da99318"><td id="qOj{" class="">Slovak</td><td id="FVqj" class="">sk</td></tr><tr id="dafd617b-cf7f-42da-bfa3-54c406450a83"><td id="qOj{" class="">French (Canadian)</td><td id="FVqj" class="">fr</td></tr><tr id="0aacc8ef-1c49-416b-9604-2cb8fab4fdb6"><td id="qOj{" class="">Slovenian</td><td id="FVqj" class="">sl</td></tr><tr id="0da83307-69fb-4055-a48e-f38bc6420c69"><td id="qOj{" class="">German</td><td id="FVqj" class="">de</td></tr><tr id="218de0a7-8bb9-428e-9d39-e1a65c17d605"><td id="qOj{" class="">Spanish</td><td id="FVqj" class="">es</td></tr><tr id="b95b4eb6-47c2-42f7-9f97-bf3819295603"><td id="qOj{" class="">Greek</td><td id="FVqj" class="">el</td></tr><tr id="bab1d49b-3218-4eb8-abe9-ab32dc9ab82f"><td id="qOj{" class="">Swedish</td><td id="FVqj" class="">sv</td></tr><tr id="5f47a47c-152c-4000-97f8-1f67c64069f6"><td id="qOj{" class="">Gujarati</td><td id="FVqj" class="">gu</td></tr><tr id="79e93b66-85ec-4f4e-b395-317968dfd013"><td id="qOj{" class="">Tamil</td><td id="FVqj" class="">ta</td></tr><tr id="58a84baa-c04b-412c-8661-e748dcdae94d"><td id="qOj{" class="">Hebrew</td><td id="FVqj" class="">he</td></tr><tr id="488bbd77-9b8d-4a8e-bf85-b637ee5c57ff"><td id="qOj{" class="">Telugu</td><td id="FVqj" class="">te</td></tr><tr id="0423250a-15a0-4eca-ab0e-d00f440acecc"><td id="qOj{" class="">Hindi</td><td id="FVqj" class="">hi</td></tr><tr id="72dcbcfd-9ae6-43b3-814b-b2ee804059d4"><td id="qOj{" class="">Thai</td><td id="FVqj" class="">th</td></tr><tr id="12412a0e-e9c9-4302-bb33-d511c011ed8a"><td id="qOj{" class="">Hungarian</td><td id="FVqj" class="">hu</td></tr><tr id="3e4a3edc-d743-4718-8133-f39f9b144adc"><td id="qOj{" class="">Turkish</td><td id="FVqj" class="">tr</td></tr><tr id="c2e89935-1da1-4d7e-806d-e7919049705b"><td id="qOj{" class="">Irish</td><td id="FVqj" class="">ga</td></tr><tr id="cd1eac58-91e2-41ea-8747-821b952cee36"><td id="qOj{" class="">Ukrainian</td><td id="FVqj" class="">uk</td></tr><tr id="b51f492f-28ba-4f2c-9ace-9b7c9b311048"><td id="qOj{" class="">Indonesian</td><td id="FVqj" class="">id</td></tr><tr id="a036dea7-6bdd-4e20-bfa8-0969fce0a849"><td id="qOj{" class="">Urdu</td><td id="FVqj" class="">ur</td></tr><tr id="c1acb7e6-a85d-4c7f-9131-4c69a804708f"><td id="qOj{" class="">Italian</td><td id="FVqj" class="">it</td></tr><tr id="52c6e100-ebd4-4e25-bb4d-544c960fbd2a"><td id="qOj{" class="">Vietnamese</td><td id="FVqj" class="">vi</td></tr><tr id="3d7c4a4e-9441-41e8-b275-d62fcb87c0c6"><td id="qOj{" class="">Japanese</td><td id="FVqj" class="">ja</td></tr><tr id="642ec408-2f98-4faa-bf8b-bac9e179b317"><td id="qOj{" class="">Welsh</td><td id="FVqj" class="">cy</td></tr></tbody></table><p id="fac978d2-3f43-48a8-9732-a3418a9278b8" class="">
+</p></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
